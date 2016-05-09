@@ -7,6 +7,7 @@ public class ThrowsEx {
 		} catch (ClassNotFoundException e) {
 			System.out.println("Class Not Found");
 		}
+
 	}
 	
 	public static void findClass() throws ClassNotFoundException {
