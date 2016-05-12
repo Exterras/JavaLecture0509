@@ -1,4 +1,4 @@
-package classes;
+package com.github.Exterras.gui.awt;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+
 
 public class AwtCalculator extends Frame implements ActionListener{
 
@@ -44,12 +46,12 @@ public class AwtCalculator extends Frame implements ActionListener{
 				calculatorButton.setForeground(Color.BLUE);
 				arrPanel[i].add(calculatorButton);
 				// arrPanel[i] Put in the GridLayout (i, 1~4)
+				
 				String calculatorCharacter = calculatorStr[i][j];
 				calculatorButton.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						calculate();
+						textfield.setText(calculatorCharacter);
 					}
 				});
 			}
@@ -68,7 +70,7 @@ public class AwtCalculator extends Frame implements ActionListener{
 	}
 	
 	public void calculate(){
-		textfield.setText(calculatorCharacter);
+		
 	}
 	
 	public static void main(String[] args) {

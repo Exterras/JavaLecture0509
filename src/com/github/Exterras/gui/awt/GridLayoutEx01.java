@@ -1,27 +1,33 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class BorderEx04Arr2 extends Frame{
+public class GridLayoutEx01 extends Frame{
 
 	Color[] color = {
 			Color.RED,
 			Color.BLUE,
 			Color.ORANGE,
+			Color.YELLOW,
 			Color.GREEN,
-			Color.YELLOW
+			Color.PINK
 	};
 	
 	String[] str = {
 			"Red",
 			"Blue",
 			"Orange",
-			"Thick",
-			"Thin"
+			"Yellow",
+			"Green",
+			"Pink"
 	};
 	
 	String[] loc = {
@@ -34,13 +40,21 @@ public class BorderEx04Arr2 extends Frame{
 	
 	Button[] btn = new Button[str.length];
 	
-	public BorderEx04Arr2() {
-		for (int i = 0; i < btn.length; i++) {
-			add(btn[i] = new Button(str[i]),loc[i]);
-			btn[i].setBackground(color[i]);
-		}
+	public GridLayoutEx01() {
+		setLayout(new GridLayout(3,2));
 		
-		setTitle("BorderEx04Arr2");
+		for (int i = 0; i < btn.length; i++) {
+			add(btn[i] = new Button(str[i]));			
+			btn[i].setFont(new Font("consolas", Font.BOLD, 15));
+			btn[i].setBackground(color[i]);
+			btn[i].setForeground(color[(btn.length-1)-i]);
+			
+			if(btn[i].getBackground() == btn[i].getForeground()){
+				btn[i].setForeground(color[(i+1) % 6]);
+			}
+		}
+	
+		setTitle("GridLayoutEx01");
 		setSize(300, 300);
 		setVisible(true);
 		
@@ -53,6 +67,6 @@ public class BorderEx04Arr2 extends Frame{
 	}
 	
 	public static void main(String[] args) {
-		new BorderEx04Arr2();
+		new GridLayoutEx01();
 	}
 }

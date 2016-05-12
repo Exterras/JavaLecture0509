@@ -1,16 +1,17 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class BorderEx04Fore extends Frame{
+public class PanelEx01 extends Frame{
 
+	Panel panel = new Panel();
+	
 	Color[] color = {
 			Color.RED,
 			Color.BLUE,
@@ -37,21 +38,18 @@ public class BorderEx04Fore extends Frame{
 	
 	Button[] btn = new Button[str.length];
 	
-	public BorderEx04Fore() {
-		setLayout(new BorderLayout());
+	public PanelEx01() {
 		
 		for (int i = 0; i < btn.length; i++) {
-			add(btn[i] = new Button(str[i]),loc[i]);			
+			btn[i] = new Button(str[i]);	
+			panel.add(btn[i]);
 			btn[i].setFont(new Font("consolas", Font.BOLD, 15));
 			btn[i].setBackground(color[i]);
-			btn[i].setForeground(color[(btn.length-1)-i]);
-			
-			if(btn[i].getBackground() == btn[i].getForeground()){
-				btn[i].setForeground(color[(i+3) % 5]);
-			}
+			btn[i].setForeground(color[(i+1)%5]);
 		}
+		add(panel, loc[4]);
 	
-		setTitle("BorderEx04Fore");
+		setTitle("PanelEx01");
 		setSize(300, 300);
 		setVisible(true);
 		
@@ -64,6 +62,6 @@ public class BorderEx04Fore extends Frame{
 	}
 	
 	public static void main(String[] args) {
-		new BorderEx04Fore();
+		new PanelEx01();
 	}
 }

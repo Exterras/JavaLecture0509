@@ -1,17 +1,13 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class BorderEx04FlowLayout extends Frame{
+public class BorderEx04Font extends Frame{
 
 	Color[] color = {
 			Color.RED,
@@ -39,29 +35,14 @@ public class BorderEx04FlowLayout extends Frame{
 	
 	Button[] btn = new Button[str.length];
 	
-	public BorderEx04FlowLayout() {
-		setLayout(new FlowLayout());
-		
+	public BorderEx04Font() {
 		for (int i = 0; i < btn.length; i++) {
-			add(btn[i] = new Button(str[i])/*,loc[i]*/);			
+			add(btn[i] = new Button(str[i]),loc[i]);			
 			btn[i].setFont(new Font("consolas", Font.BOLD, 15));
 			btn[i].setBackground(color[i]);
-			btn[i].setForeground(color[(btn.length-1)-i]);
-			
-			if(btn[i].getBackground() == btn[i].getForeground()){
-				btn[i].setForeground(color[(btn.length-1)-(i+1)]);
-			}
 		}
 		
-		Panel panel = new Panel();
-		Label nice = new Label("Nice",Label.LEFT);
-		Label day = new Label("Day!",Label.RIGHT);
-		
-		panel.add(nice);
-		panel.add(day);
-		add(panel);
-	
-		setTitle("BorderEx04FlowLayout");
+		setTitle("BorderEx04Font");
 		setSize(300, 300);
 		setVisible(true);
 		
@@ -74,6 +55,6 @@ public class BorderEx04FlowLayout extends Frame{
 	}
 	
 	public static void main(String[] args) {
-		new BorderEx04FlowLayout();
+		new BorderEx04Font();
 	}
 }

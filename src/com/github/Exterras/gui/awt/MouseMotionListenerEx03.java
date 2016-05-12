@@ -1,4 +1,4 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
 import java.awt.Frame;
 import java.awt.Graphics;

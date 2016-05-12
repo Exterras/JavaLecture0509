@@ -1,4 +1,4 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ColorEventEx03Adv extends Frame implements WindowListener, ActionListener{
+public class ColorEventEx03 extends Frame implements WindowListener, ActionListener{
 
 	Panel panel1 = new Panel();
 	Panel panel2 = new Panel();
@@ -36,7 +36,8 @@ public class ColorEventEx03Adv extends Frame implements WindowListener, ActionLi
 		label.setText(e.getActionCommand());
 	}
 
-	public ColorEventEx03Adv() {		
+	public ColorEventEx03() {
+
 		for (int i = 0; i < str.length; i++) {
 			b[i] = new Button(str[i]);
 			panel1.add(b[i]);
@@ -71,10 +72,9 @@ public class ColorEventEx03Adv extends Frame implements WindowListener, ActionLi
 
 	public static void main(String[] args) {
 
-		ColorEventEx03Adv obj = new ColorEventEx03Adv();
+		ColorEventEx03 obj = new ColorEventEx03();
 
 		obj.setSize(800, 800);
-		obj.setBackground(Color.WHITE);
 		obj.setVisible(true);
 	}
 

@@ -1,4 +1,4 @@
-package classes;
+package com.github.Exterras.gui.awt;
 
 import java.awt.Button;
 import java.awt.Color;

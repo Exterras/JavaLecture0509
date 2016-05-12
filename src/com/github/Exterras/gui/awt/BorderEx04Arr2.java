@@ -1,20 +1,19 @@
-package com.github.Exterras.awt;
+package com.github.Exterras.gui.awt;
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class BorderEx04Font extends Frame{
+public class BorderEx04Arr2 extends Frame{
 
 	Color[] color = {
 			Color.RED,
 			Color.BLUE,
 			Color.ORANGE,
-			Color.YELLOW,
-			Color.GREEN
+			Color.GREEN,
+			Color.YELLOW
 	};
 	
 	String[] str = {
@@ -35,14 +34,13 @@ public class BorderEx04Font extends Frame{
 	
 	Button[] btn = new Button[str.length];
 	
-	public BorderEx04Font() {
+	public BorderEx04Arr2() {
 		for (int i = 0; i < btn.length; i++) {
-			add(btn[i] = new Button(str[i]),loc[i]);			
-			btn[i].setFont(new Font("consolas", Font.BOLD, 15));
+			add(btn[i] = new Button(str[i]),loc[i]);
 			btn[i].setBackground(color[i]);
 		}
 		
-		setTitle("BorderEx04Font");
+		setTitle("BorderEx04Arr2");
 		setSize(300, 300);
 		setVisible(true);
 		
@@ -55,6 +53,6 @@ public class BorderEx04Font extends Frame{
 	}
 	
 	public static void main(String[] args) {
-		new BorderEx04Font();
+		new BorderEx04Arr2();
 	}
 }
