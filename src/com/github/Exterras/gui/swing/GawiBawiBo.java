@@ -21,6 +21,9 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 	private String[] strComVsUserResult = {        "", ""         };
 	private String[] strFooter =     {   "Game Start", "Stop"     };
 	
+	private String[] strFooterLeft = {"User Win", "Draw", "Computer Win"};
+	private JLabel labelFooterLeft = new JLabel(strFooter[0], JLabel.CENTER);
+	
 	private JButton[] btnComVsUserResult = new JButton[strComVsUserResult.length];
 
 	private static final int GRID_LAYOUT_ROWS = 5;
@@ -104,7 +107,7 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 			case 4:
 				panel.setLayout(new GridLayout(1, 2));
 				
-				label = new JLabel(strFooter[0],JLabel.CENTER);
+				label = labelFooterLeft;
 				button = new JButton(strFooter[1]);
 
 				label.setFont(new Font("consolas", Font.BOLD, 20));
@@ -122,7 +125,8 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 		}
 	}
 	
-	private void setResult(ActionEvent e) {
+	private void setResult(ActionEvent e) { // When You Click Rock or Scissor or Paper
+		// Activity Processing
 		int com = UserObj.getRandom(strGawiBawiBo.length);
 		int user = 0;
 		String str = e.getActionCommand();
@@ -138,12 +142,22 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 			user = 3;
 			break;
 		}
-
+		
+		// Activity Result
 		btnComVsUserResult[0].setText(strGawiBawiBo[com - 1]);
 		btnComVsUserResult[1].setText(strGawiBawiBo[user - 1]);
+		
+		// Game Result
+		if ((com == 1 && user == 2) || (com == 2 && user == 3) || (com == 3 && user == 1)) { 
+			labelFooterLeft.setText(strFooterLeft[0]); // User Win
+		} else if (com == user) {
+			labelFooterLeft.setText(strFooterLeft[1]); // Draw
+		} else {
+			labelFooterLeft.setText(strFooterLeft[2]); // Computer Win
+		}
 
 	}
-
+	
 	public static void main(String[] args) {
 		GawiBawiBo gbb = new GawiBawiBo();
 		gbb.play();

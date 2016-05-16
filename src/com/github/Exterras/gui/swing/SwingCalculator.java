@@ -26,9 +26,10 @@ public class SwingCalculator extends JFrame implements ActionListener {
 	
 	String strResult = null;
 	String setBtnCharacter = null;
-	char oper = 0;
-	double a = 0, b = 0;
-	double result = 0;
+	
+	char oper = 0; // +, -, *, / 
+	double a = 0, b = 0; // a = front num, b = back num
+	double result = 0; // calculation of a and b
 
 	public void play() {
 		setLayout(new GridLayout(6, 1));
@@ -95,11 +96,17 @@ public class SwingCalculator extends JFrame implements ActionListener {
 							break;
 						case "=":							
 							b = Integer.parseInt(textField.getText());
-							result();
+							result(); // method separated 
 							oper = 0;
 							textField.setText(strResult);
 							break;
-						case "C":
+						case "<": // backspace
+							if(textField.getText().length() > 0){
+								String str = textField.getText().substring(0,textField.getText().length()-1);
+								textField.setText(str);
+							}				
+							break;
+						case "C": // Clear
 							setBtnCharacter = null;
 							textField.setText("0");
 							break;
@@ -127,7 +134,7 @@ public class SwingCalculator extends JFrame implements ActionListener {
 		textField.setText("");
 	}
 	
-	private void result(){
+	private void result(){ // btnText == "="
 		switch (oper) {
 		case '+':
 			result = a + b;
@@ -144,7 +151,7 @@ public class SwingCalculator extends JFrame implements ActionListener {
 		case '/':
 			result = ((double)a / (double)b);
 			strResult = Double.toString(result);
-			break;
+			break;	
 		default:
 			break;
 		}
@@ -161,3 +168,4 @@ public class SwingCalculator extends JFrame implements ActionListener {
 	}
 	
 }
+
