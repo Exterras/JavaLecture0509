@@ -1,4 +1,4 @@
-package classes;
+package com.github.Exterras.chap10;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,28 +13,36 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.github.Exterras.gui.swing.UserObj;
+
 import javax.swing.JLabel;
 
-public class GawiBawiBo extends JFrame implements ActionListener {
+public class GawiBawiBoImg extends JFrame implements ActionListener {
 
 	private String strHeader = "Select GawiBawiBo";
-	private String[] strGawiBawiBo = { "Scissor", "Rock", "Paper" };
+	// private String[] strGawiBawiBo = { "Scissor", "Rock", "Paper" };
 	private String[] strComVsUser = { "Computer", "User" };
 	private String[] strComVsUserResult = { "", "" };
 	private String[] strFooter = { "Game Start", "Stop" };
-
-	private ImageIcon[] icon = { new ImageIcon("img/scissor.png"), new ImageIcon("img/rock.png"),
-			new ImageIcon("img/paper.png"), };
-
 	private String[] strFooterLeft = { "User Win", "Draw", "Computer Win" };
+	
+	private ImageIcon[] icon = { 
+			new ImageIcon("img/scissor.png"), 
+			new ImageIcon("img/rock.png"),
+			new ImageIcon("img/paper.png") };
+	
 	private JLabel labelFooterLeft = new JLabel(strFooter[0], JLabel.CENTER);
 
 	private JButton[] btnComVsUserResult = new JButton[strComVsUserResult.length];
+	
+	private JPanel gTemp = new JPanel(); // GridLayout(4,1)'s Panel
 
 	private static final int GRID_LAYOUT_ROWS = 5;
 	private static final int GRID_LAYOUT_COLS = 1;
-
-	private JPanel gTemp = new JPanel(); // GridLayout(4,1)'s Panel
+	
+	int conWin;
+	int userWin;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -81,18 +89,14 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 				Image img = null;
 				ImageIcon tempIcon = null;
 				for (int j = 0; j < icon.length; j++) {
-					
-					button = new JButton(imgSingleSizeControl(100, 100, j));
-					// button.setFont(new Font("consolas", Font.BOLD, 25));
-					// button.setForeground(Color.BLUE);
-					// button.setBackground(Color.YELLOW);
 
+					button = new JButton(imgSingleSizeControl(100, 100, j));
 					panel.add(button); // GridLayout(1,1)
-					int tempCount = j; // index -> tempCount
+					int userNum = j; // index -> tempCount
 					button.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							setResult(e, tempCount); // tempCount is parameter
+							setResult(e, userNum); // userNum is parameter of user result
 						}
 					});
 				}
@@ -130,8 +134,10 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 				button.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						for (int j = 0; j < btnComVsUserResult.length; j++) { gTemp.remove(btnComVsUserResult[j]); }
-						for (int j = 0; j < btnComVsUserResult.length; j++) { gTemp.add(btnComVsUserResult[j]); }
+						// for (int j = 0; j < btnComVsUserResult.length; j++) {
+						// gTemp.remove(btnComVsUserResult[j]); }
+						// for (int j = 0; j < btnComVsUserResult.length; j++) {
+						// gTemp.add(btnComVsUserResult[j]); }
 					}
 				});
 				add(panel);
@@ -143,17 +149,15 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 		}
 	}
 
-	private void reset(){
-		
+	private void reset() {
 		for (int j = 0; j < strComVsUserResult.length; j++) {
 			btnComVsUserResult[j] = new JButton(strComVsUserResult[j]);
 			btnComVsUserResult[j].setFont(new Font("consolas", Font.BOLD, 20));
-			// button.setBackground(Color.RED);
 			gTemp.add(btnComVsUserResult[j]); // GridLayout(1,1)
 		}
 		add(gTemp);
 	}
-	
+
 	private ImageIcon imgSingleSizeControl(int width, int height, int index) {
 		Image img = null;
 		ImageIcon imgIcon = null;
@@ -162,44 +166,45 @@ public class GawiBawiBo extends JFrame implements ActionListener {
 		return imgIcon;
 	}
 
-	private void setResult(ActionEvent e, int count) { // When You Click Rock or Scissor or Paper
+	private void setResult(ActionEvent e, int userNum) { 
+		// When You Click Rock or Scissor or Paper
 
 		// Activity Processing
 		int com = UserObj.getRandom(icon.length);
-		int user = 0;
+		int user = userNum + 1;
+		String strResult = null;
 
-		switch (count) {
-		case 0:
-			user = 1;
-			break;
-		case 1:
-			user = 2;
-			break;
-		case 2:
-			user = 3;
-			break;
+		for (int i = 0; i < btnComVsUserResult.length; i++) {
+			gTemp.remove(btnComVsUserResult[i]);
 		}
-		
-		for (int i = 0; i < btnComVsUserResult.length; i++) { gTemp.remove(btnComVsUserResult[i]); }
-		
+
 		btnComVsUserResult[0] = new JButton(imgSingleSizeControl(100, 100, (com - 1)));
 		btnComVsUserResult[1] = new JButton(imgSingleSizeControl(100, 100, (user - 1)));
-		
-		for (int i = 0; i < btnComVsUserResult.length; i++) { gTemp.add(btnComVsUserResult[i]); }
 
+		for (int i = 0; i < btnComVsUserResult.length; i++) {
+			gTemp.add(btnComVsUserResult[i]);
+		}
+		
+		
 		// Game Result
 		if ((com == 1 && user == 2) || (com == 2 && user == 3) || (com == 3 && user == 1)) {
-			labelFooterLeft.setText(strFooterLeft[0]); // User Win
+			userWin++;
+			strResult = strFooterLeft[0];
+			// User Win
 		} else if (com == user) {
-			labelFooterLeft.setText(strFooterLeft[1]); // Draw
+			strResult = strFooterLeft[1];
+			// Draw
 		} else {
-			labelFooterLeft.setText(strFooterLeft[2]); // Computer Win
+			conWin++;
+			strResult = strFooterLeft[2];
+			// Computer Win
 		}
-
+		labelFooterLeft.setText("<html>"+strResult+"<br/>"+"Com: "+conWin+" User : "+userWin+"</html>"); // Computer Win
+	
 	}
 
 	public static void main(String[] args) {
-		GawiBawiBo gbb = new GawiBawiBo();
+		GawiBawiBoImg gbb = new GawiBawiBoImg();
 		gbb.play();
 	}
 }
