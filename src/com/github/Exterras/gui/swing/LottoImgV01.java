@@ -1,4 +1,4 @@
-package classes;
+package com.github.Exterras.gui.swing;
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -51,14 +51,13 @@ public class LottoImgV01 extends JFrame {
 
 		for (int i = 0; i < arrJPanel.length; i++) {
 			arrJPanel[i] = new JPanel();
+			arrJPanel[i].setLayout(new GridLayout(1, 1));
 			switch (i) {
 			case 0: // GridLayout(1,1)
-				arrJPanel[0].setLayout(new GridLayout(1, 1));
 				label = new JLabel(imgSingleSizeControl(480, 150, titleImgIcon, 0));
 				arrJPanel[0].add(label);
 				break;
 			case 1: // GridLayout(2,1)
-				arrJPanel[1].setLayout(new GridLayout(1, 1));
 				label = new JLabel("Number", JLabel.CENTER);
 				for (int j = 0; j < numImgIcon.length; j++) {
 					if (j == numImgIcon.length - 1) {
@@ -66,19 +65,13 @@ public class LottoImgV01 extends JFrame {
 						label = new JLabel(imgSingleSizeControl(50, 50, numImgIcon, j));
 						arrJPanel[1].add(label);
 					}
-
+					
 					numImgIcon[j] = new ImageIcon("img/q.jpg");
 					arrLabelGL2[j] = new JLabel(imgSingleSizeControl(50, 50, numImgIcon, j));
 					arrJPanel[1].add(arrLabelGL2[j]);
 				}
 				break;
 			case 2: // GridLayout(3,1)
-				// arrJPanel[2].setLayout(new GridLayout(1, 2));
-				// for (int j = 0; j < strJPanel2.length; j++) {
-				// arrJPanel[2].add(new JLabel(strJPanel2[j], JLabel.CENTER));
-				// }
-
-				arrJPanel[2].setLayout(new GridLayout(1, 1));
 				button = new JButton(imgSingleSizeControl(225, 125, btnimgIcon, 0));
 				button.addActionListener(new ActionListener() {
 					@Override
@@ -96,7 +89,8 @@ public class LottoImgV01 extends JFrame {
 					}
 				});
 				arrJPanel[2].add(button);
-				add(arrJPanel[2]);
+				
+				
 				break;
 			default:
 				break;
@@ -125,14 +119,19 @@ public class LottoImgV01 extends JFrame {
 				}
 			} // de-duplication
 			
-			for (int j = 0; j < lottoNum.length; j++) {
-				int tempValue = 0;
-				if (lottoNum[i] < lottoNum[j]) {
-					tempValue = lottoNum[j];
-					lottoNum[j] = lottoNum[i];
-					lottoNum[i] = tempValue;
-				}
-			} // sorting
+			if(i != numImgIcon.length-1){ 
+				// lotto Main Number Roll, include sorting
+				for (int j = 0; j < lottoNum.length; j++) {
+					int tempValue = 0;
+					if (lottoNum[i] < lottoNum[j]) {
+						tempValue = lottoNum[j];
+						lottoNum[j] = lottoNum[i];
+						lottoNum[i] = tempValue;
+					}
+				} 
+			} else { 
+				// Bonus Number Re-Roll, not include sorting
+			}
 			
 		} // Lotto Processing Loof
 		
