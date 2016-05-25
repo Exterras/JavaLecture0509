@@ -6,27 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class memSelect {
+public class memSelectClose {
 	
-	private static String vId, vPwd, vName, vAddr, vEmail, vPhone;
+	private String vId, vPwd, vName, vAddr, vEmail, vPhone;
 	
-	public static void main(String[] args) {
-			
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String uid = "hr";
-		String upw = "happyday";
+	public void select(){
+		DbSet dbset = new DbSet();	
+		DbClose dbclose = new DbClose();
 		
 		String selSql = "select * from membert01";
 		
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("Driver Interlock Success");
-			
-			Connection conn = DriverManager.getConnection(url, uid, upw);
-			System.out.println("DB Interlock Success\n");
-			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(selSql);
+			conn = dbset.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(selSql);
 			
 			System.out.println("ID\tPWD\tNAME\tADDR\tEMAIL\t\tPHONE\t");
 					
@@ -53,14 +50,18 @@ public class memSelect {
 //						"EMAIL : "+vEmail+"\n"+
 //						"PHONE : "+vPhone+"\n");
 			
-				System.out.println(vId+"\t"+vPwd+"\t"+vName+"\t"+vAddr+"\t"+vEmail+"\t"+vPhone+"\t");
+				System.out.println(vId+"\t"+vName+"\t"+vPwd+"\t"+vAddr+"\t"+vEmail+"\t"+vPhone+"\t");
 			}
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			dbclose.close(rs, stmt, conn);
 		}
 	}
+	
+	public static void main(String[] args) {
+		memSelectClose objSel = new memSelectClose();
+		objSel.select();
+	}
 }
-

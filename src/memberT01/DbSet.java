@@ -1,4 +1,4 @@
-package javaJdbc;
+package memberT01;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,7 @@ public class DbSet {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, uid, upw);
 			System.out.println("Driver Interlock Success");
-			System.out.println("DB Interlock Success"+"\n");
+			System.out.println("DB Interlock Success");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

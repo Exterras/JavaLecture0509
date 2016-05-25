@@ -36,7 +36,7 @@ public class memInsert3 {
 			Statement stmt = conn.createStatement();
 			System.out.println("DB Interlock Success");
 			
-			num += DbSet.stmt.executeUpdate(insSql);
+			num += stmt.executeUpdate(insSql);
 			
 			if (num != 0) {
 				System.out.println("Welcome! " + name[i] + "\n");
@@ -57,7 +57,6 @@ public class memInsert3 {
 
 	public static void main(String[] args) {
 		memInsert3 objIns = new memInsert3();
-		DbSet.getConnection();
 		for (i = 0; i < id.length; i++) {
 			objIns.insert(id[i], name[i], pwd[i], addr[i], email[i], phone[i]);
 		}
