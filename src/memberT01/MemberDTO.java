@@ -13,6 +13,10 @@ public class MemberDTO {
 		
 	}
 	
+	public MemberDTO(String id, String pwd){
+		this(id, pwd, null, null, null, null);
+	}
+	
 	public MemberDTO(String id, String pwd, String name, String addr, String email, String phone){
 		this.id = id;
 		this.pwd = pwd;

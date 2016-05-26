@@ -16,10 +16,12 @@ public class LoginMain extends Application{
 		primaryStage.setTitle("Login Page");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }
+
+

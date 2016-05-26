@@ -19,6 +19,58 @@ public class MemberDAO {
 	private String vId, vPwd, vName, vAddr, vEmail, vPhone;
 	private Connection conn = null;
 	private Statement stmt = null;
+	
+	void login(MemberDTO dto){
+		DbSet dbset = new DbSet();
+		DbClose dbclose = new DbClose();
+
+		String selSql = "select * from membert01 where id='"+dto.getId()+"' and pwd='"+dto.getPwd()+"'";
+		
+		ResultSet rs = null;
+		
+		try {
+			conn = dbset.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(selSql);
+
+			if (rs.next()) {
+				System.out.println("Welcome! "+dto.getId());
+			} else {
+				System.out.println("Check Id and PWD! ");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbclose.close(rs, stmt, conn);
+		}
+	}
+
+	void login(String id, String pwd){
+		DbSet dbset = new DbSet();
+		DbClose dbclose = new DbClose();
+
+		String selSql = "select * from membert01 where id='"+id+"' and pwd='"+pwd+"'";
+		
+		ResultSet rs = null;
+		
+		try {
+			conn = dbset.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(selSql);
+
+			if (rs.next()) {
+				System.out.println("Welcome! "+id);
+			} else {
+				System.out.println("Check Id and PWD! ");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbclose.close(rs, stmt, conn);
+		}
+	}
 
 	void insert(MemberDTO dto) {
 		DbSet dbset = new DbSet();
@@ -52,7 +104,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public void update(MemberDTO dto) {
+	void update(MemberDTO dto) {
 		vId = dto.getId();
 		vPwd = dto.getPwd();
 		vName = dto.getName();
@@ -100,7 +152,7 @@ public class MemberDAO {
 		}
 	}
 
-	public void select(MemberDTO dto) {
+	void select(MemberDTO dto) {
 		DbSet dbset = new DbSet();
 		DbClose dbclose = new DbClose();
 

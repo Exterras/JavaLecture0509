@@ -1,4 +1,4 @@
-package classes;
+package com.github.Exterras.gui.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
