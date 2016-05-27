@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join;
+package javafx.join.update;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,14 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class AppTab extends Application{
+public class UpdateMain extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("tab.fxml"));
-		Scene scene = new Scene(root);
+		Parent update = FXMLLoader.load(getClass().getResource("update.fxml"));
+		Scene scene = new Scene(update);
 		
-		primaryStage.setTitle("Main Page");
+		primaryStage.setTitle("Update Page");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -21,6 +21,5 @@ public class AppTab extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-}
 
+}

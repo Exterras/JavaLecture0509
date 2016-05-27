@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join.login;
+package javafx.join.login;
 
 import com.github.Exterras.gui.javafx.join.db.MemberDAO;
 import com.github.Exterras.gui.javafx.join.db.MemberDTO;

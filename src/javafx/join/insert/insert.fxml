@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="600.0"
 	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.github.Exterras.gui.javafx.join.insert.InsertController">
+	fx:controller="javafx.join.insert.InsertController">
 	<children>
 		<VBox layoutX="10.0" layoutY="10.0" prefHeight="125.0" prefWidth="580.0"
 			style="-fx-background-color: yellow;" />

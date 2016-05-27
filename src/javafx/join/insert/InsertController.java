@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join.login;
+package javafx.join.insert;
 
 import com.github.Exterras.gui.javafx.join.db.MemberDAO;
 import com.github.Exterras.gui.javafx.join.db.MemberDTO;
@@ -10,39 +10,46 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-public class LoginController implements Initializable{
+public class InsertController implements Initializable{
 
 	@FXML TextField txtId;
 	@FXML PasswordField txtPwd;
+	@FXML TextField txtName;
+	@FXML TextField txtEmail;
+	@FXML TextField txtPhone;
+	@FXML TextField txtAddress;
 	
-	@FXML Button btnLogin;
+	@FXML Button btnJoin;
 	@FXML Button btnCancel;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		btnLogin.setOnAction(new EventHandler<ActionEvent>() {
+		btnJoin.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				handleBtnLoginAction(event);		
-			
+				handleBtnJoinAction(event);	
 			}
 		});
 		
 		btnCancel.setOnAction(event->handleBtnCancelAction(event));
 	}
 	
-	private void handleBtnLoginAction(ActionEvent event) {
-		System.out.println("Click Login");
+	private void handleBtnJoinAction(ActionEvent event) {
+		System.out.println("Click Join");
 		
 		String id = txtId.getText();
 		String pw = txtPwd.getText();
+		String name = txtName.getText();
+		String email = txtEmail.getText();
+		String phone = txtPhone.getText();
+		String address = txtAddress.getText();
 		
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Error");
@@ -53,7 +60,8 @@ public class LoginController implements Initializable{
 		if(id.equals("") && pw.equals("")){
 			System.out.println("Input ID and PWD");
 			error.setContentText("Input ID and PWD");
-			error.showAndWait();
+			error.showAndWait(); 
+			txtId.requestFocus();
 		} else if (id.equals("")) {
 			System.out.println("Input ID");
 			error.setContentText("Input ID");
@@ -62,28 +70,45 @@ public class LoginController implements Initializable{
 			System.out.println("Input PWD");
 			error.setContentText("Input PWD");
 			error.showAndWait();
-		} else {
-			System.out.println("Login Success!");
-			confirmation.setContentText("Login Success!");
-			confirmation.showAndWait();
+		} else if (name.equals("")) {
+			System.out.println("Input Name");
+			error.setContentText("Input Name");
+			error.showAndWait();
+		} else if (email.equals("")) {
+			System.out.println("Input Email");
+			error.setContentText("Input Email");
+			error.showAndWait();
+		} else if (phone.equals("")) {
+			System.out.println("Input Phone");
+			error.setContentText("Input Phone");
+			error.showAndWait();
+		} else if (address.equals("")) {
+			System.out.println("Input Address");
+			error.setContentText("Input Address");
+			error.showAndWait();
+		} else { 
 			
 			MemberDTO dto = new MemberDTO();
 			dto.setId(id);
 			dto.setPwd(pw);
-
-			if(isLogin(dto)){
-				System.out.println("Login Success!");
-				confirmation.setContentText("Login Success!");
+			dto.setName(name);
+			dto.setEmail(email);
+			dto.setPhone(phone);
+			dto.setAddr(address); 
+			 
+			if(isJoin(dto)){
+				System.out.println("Join Success!");
+				confirmation.setContentText("Join Success!");
 				
 			}else{
-				System.out.println("Login Fail!");
-				confirmation.setContentText("Login Fail!");
+				System.out.println("Join Fail!");
+				confirmation.setContentText("Join Fail!");
 			} 
 			confirmation.showAndWait(); 
 		}
 	}
 	
-	private boolean isLogin(MemberDTO dto){		
+	private boolean isJoin(MemberDTO dto){		
 		boolean isSuccess = false;
 		MemberDAO dao = new MemberDAO();
 		int chk = dao.insert(dto);
@@ -99,6 +124,11 @@ public class LoginController implements Initializable{
 		
 		txtId.clear();
 		txtPwd.clear();
+		txtName.clear();
+		txtEmail.clear();
+		txtPhone.clear();
+		txtAddress.clear();
+		
 	}
 	
 }

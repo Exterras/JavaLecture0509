@@ -1,7 +1,4 @@
-package com.github.Exterras.gui.javafx.join.login;
-
-import com.github.Exterras.gui.javafx.join.db.MemberDAO;
-import com.github.Exterras.gui.javafx.join.db.MemberDTO;
+package javafx.join.delete;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,21 +13,21 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
-public class LoginController implements Initializable{
+public class DeleteController implements Initializable{
 
 	@FXML TextField txtId;
 	@FXML PasswordField txtPwd;
 	
-	@FXML Button btnLogin;
+	@FXML Button btnDelete;
 	@FXML Button btnCancel;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		btnLogin.setOnAction(new EventHandler<ActionEvent>() {
+		btnDelete.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				handleBtnLoginAction(event);		
+				handleBtnDeleteAction(event);		
 			
 			}
 		});
@@ -38,8 +35,8 @@ public class LoginController implements Initializable{
 		btnCancel.setOnAction(event->handleBtnCancelAction(event));
 	}
 	
-	private void handleBtnLoginAction(ActionEvent event) {
-		System.out.println("Click Login");
+	private void handleBtnDeleteAction(ActionEvent event) {
+		System.out.println("Click Delete");
 		
 		String id = txtId.getText();
 		String pw = txtPwd.getText();
@@ -63,35 +60,10 @@ public class LoginController implements Initializable{
 			error.setContentText("Input PWD");
 			error.showAndWait();
 		} else {
-			System.out.println("Login Success!");
-			confirmation.setContentText("Login Success!");
+			System.out.println("Delete Success!");
+			confirmation.setContentText("Delete Success!");
 			confirmation.showAndWait();
-			
-			MemberDTO dto = new MemberDTO();
-			dto.setId(id);
-			dto.setPwd(pw);
-
-			if(isLogin(dto)){
-				System.out.println("Login Success!");
-				confirmation.setContentText("Login Success!");
-				
-			}else{
-				System.out.println("Login Fail!");
-				confirmation.setContentText("Login Fail!");
-			} 
-			confirmation.showAndWait(); 
 		}
-	}
-	
-	private boolean isLogin(MemberDTO dto){		
-		boolean isSuccess = false;
-		MemberDAO dao = new MemberDAO();
-		int chk = dao.insert(dto);
-		
-		if(chk != 0){
-			isSuccess = true;
-		}
-		return isSuccess;
 	}
 	
 	private void handleBtnCancelAction(ActionEvent event) {
@@ -100,5 +72,5 @@ public class LoginController implements Initializable{
 		txtId.clear();
 		txtPwd.clear();
 	}
-	
+
 }

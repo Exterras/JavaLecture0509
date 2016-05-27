@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.Exterras.gui.javafx.join.update.UpdateController">
+<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.join.update.UpdateController">
 	<children>
 		<VBox layoutX="10.0" layoutY="10.0" prefHeight="125.0" prefWidth="580.0" style="-fx-background-color: yellow;" />
 		<VBox layoutX="10.0" layoutY="135.0" prefHeight="605.0" prefWidth="580.0" style="-fx-background-color: pink;">

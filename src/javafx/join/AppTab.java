@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join;
+package javafx.join;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
