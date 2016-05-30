@@ -63,10 +63,6 @@ public class LoginController implements Initializable{
 			error.setContentText("Input PWD");
 			error.showAndWait();
 		} else {
-			System.out.println("Login Success!");
-			confirmation.setContentText("Login Success!");
-			confirmation.showAndWait();
-			
 			MemberDTO dto = new MemberDTO();
 			dto.setId(id);
 			dto.setPwd(pw);
@@ -86,9 +82,8 @@ public class LoginController implements Initializable{
 	private boolean isLogin(MemberDTO dto){		
 		boolean isSuccess = false;
 		MemberDAO dao = new MemberDAO();
-		int chk = dao.insert(dto);
 		
-		if(chk != 0){
+		if(dao.login(dto)){
 			isSuccess = true;
 		}
 		return isSuccess;

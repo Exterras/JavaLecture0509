@@ -3,6 +3,9 @@ package com.github.Exterras.gui.javafx.join.delete;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.github.Exterras.gui.javafx.join.db.MemberDAO;
+import com.github.Exterras.gui.javafx.join.db.MemberDTO;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -60,10 +63,30 @@ public class DeleteController implements Initializable{
 			error.setContentText("Input PWD");
 			error.showAndWait();
 		} else {
-			System.out.println("Delete Success!");
-			confirmation.setContentText("Delete Success!");
-			confirmation.showAndWait();
+			MemberDTO dto = new MemberDTO();
+			dto.setId(id);
+			dto.setPwd(pw);
+
+			if(isDelete(dto)){
+				System.out.println("Delete Success!");
+				confirmation.setContentText("Delete Success!");
+				
+			}else{
+				System.out.println("Delete Fail!");
+				confirmation.setContentText("Delete Fail!");
+			} 
+			confirmation.showAndWait(); 
 		}
+	}
+	
+	private boolean isDelete(MemberDTO dto){		
+		boolean isSuccess = false;
+		MemberDAO dao = new MemberDAO();
+		
+		if(dao.delete(dto)){
+			isSuccess = true;
+		}
+		return isSuccess;
 	}
 	
 	private void handleBtnCancelAction(ActionEvent event) {
