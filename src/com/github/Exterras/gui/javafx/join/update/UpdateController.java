@@ -1,32 +1,50 @@
 package com.github.Exterras.gui.javafx.join.update;
 
-import com.github.Exterras.gui.javafx.join.db.MemberDAO;
-import com.github.Exterras.gui.javafx.join.db.MemberDTO;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.github.Exterras.gui.javafx.join.AppTab;
+import com.github.Exterras.gui.javafx.join.db.MemberDAO;
+import com.github.Exterras.gui.javafx.join.db.MemberDTO;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class UpdateController implements Initializable{
 
-	@FXML TextField txtId;
-	@FXML PasswordField txtPwd;
-	@FXML TextField txtName;
-	@FXML TextField txtEmail;
-	@FXML TextField txtPhone;
-	@FXML TextField txtAddress;
+	@FXML public static TextField txtId;
+	@FXML public static PasswordField txtPwd;
+	@FXML public static TextField txtName;
+	@FXML public static TextField txtEmail;
+	@FXML public static TextField txtPhone;
+	@FXML public static TextField txtAddress;
 	
 	@FXML Button btnUpdate;
 	@FXML Button btnCancel;
+	
+	public void setFieldData(){ 
+		if (AppTab.memberId != null) {
+			MemberDAO dao = new MemberDAO();
+			MemberDTO dto = dao.getMemberData(AppTab.memberId);  
+			setTextMemberDTO(dto); 
+		}
+	}
+	
+	public void setTextMemberDTO(MemberDTO dto){
+		txtId.setText(dto.getId());
+		txtPwd.setText(dto.getPwd());
+		txtName.setText(dto.getName());
+		txtEmail.setText(dto.getEmail());
+		txtPhone.setText(dto.getPhone());
+		txtAddress.setText(dto.getAddr());
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -124,6 +142,7 @@ public class UpdateController implements Initializable{
 	private void handleBtnCancelAction(ActionEvent event) {
 		System.out.println("Click Cancel");
 		
+		txtId.clear();
 		txtPwd.clear();
 		txtName.clear();
 		txtEmail.clear();

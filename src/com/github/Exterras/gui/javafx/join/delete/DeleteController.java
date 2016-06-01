@@ -54,14 +54,17 @@ public class DeleteController implements Initializable{
 			System.out.println("Input ID and PWD");
 			error.setContentText("Input ID and PWD");
 			error.showAndWait();
+			txtId.requestFocus();
 		} else if (id.equals("")) {
 			System.out.println("Input ID");
 			error.setContentText("Input ID");
 			error.showAndWait();
+			txtId.requestFocus();
 		} else if (pw.equals("")) {
 			System.out.println("Input PWD");
 			error.setContentText("Input PWD");
 			error.showAndWait();
+			txtPwd.requestFocus();
 		} else {
 			MemberDTO dto = new MemberDTO();
 			dto.setId(id);

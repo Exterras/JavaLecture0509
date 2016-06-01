@@ -9,7 +9,7 @@ public class ArraysAsListEx {
 		for (String name : list1) {
 			System.out.println(name);
 		}
-		
+		System.out.println("size()-1 Confirm : "+list1.get((list1.size())-1));
 		List<Integer> list2 = Arrays.asList(1, 2, 3);
 		for (int value : list2) {
 			System.out.println(value);

@@ -1,5 +1,6 @@
 package com.github.Exterras.gui.javafx.join.login;
 
+import com.github.Exterras.gui.javafx.join.AppTab;
 import com.github.Exterras.gui.javafx.join.db.MemberDAO;
 import com.github.Exterras.gui.javafx.join.db.MemberDTO;
 
@@ -54,14 +55,17 @@ public class LoginController implements Initializable{
 			System.out.println("Input ID and PWD");
 			error.setContentText("Input ID and PWD");
 			error.showAndWait();
+			txtId.requestFocus();
 		} else if (id.equals("")) {
 			System.out.println("Input ID");
 			error.setContentText("Input ID");
 			error.showAndWait();
+			txtId.requestFocus();
 		} else if (pw.equals("")) {
 			System.out.println("Input PWD");
 			error.setContentText("Input PWD");
 			error.showAndWait();
+			txtPwd.requestFocus();
 		} else {
 			MemberDTO dto = new MemberDTO();
 			dto.setId(id);
@@ -70,6 +74,7 @@ public class LoginController implements Initializable{
 			if(isLogin(dto)){
 				System.out.println("Login Success!");
 				confirmation.setContentText("Login Success!");
+				AppTab.memberId = id;
 				
 			}else{
 				System.out.println("Login Fail!");

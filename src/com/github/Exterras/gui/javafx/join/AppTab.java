@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AppTab extends Application{
+	
+	public static String memberId = null;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join.db;
+package javaJdbc;
 
 public class MemberDTO { 
 	 
@@ -8,15 +8,6 @@ public class MemberDTO {
 	private String email;
 	private String phone;
 	private String addr;
-	
-	public MemberDTO(){
-		id = "";
-		pwd = "";
-		name = "";
-		email = "";
-		phone = "";
-		addr = "";
-	}
 
 	public String getId() {
 		return id;
