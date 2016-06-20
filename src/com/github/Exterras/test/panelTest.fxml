@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" 
+xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <CheckBox layoutX="79.0" layoutY="63.0" mnemonicParsing="false" text="Red" />
+      <CheckBox layoutX="79.0" layoutY="100.0" mnemonicParsing="false" text="Green" />
+      <CheckBox layoutX="79.0" layoutY="139.0" mnemonicParsing="false" text="Blue" />
+      <RadioButton layoutX="224.0" layoutY="63.0" mnemonicParsing="false" text="A형" />
+      <RadioButton layoutX="224.0" layoutY="100.0" mnemonicParsing="false" text="B형" />
+      <RadioButton layoutX="224.0" layoutY="139.0" mnemonicParsing="false" text="O형" />
+      <Button layoutX="404.0" layoutY="60.0" mnemonicParsing="false" text="선 택" />
+      <Button layoutX="465.0" layoutY="60.0" mnemonicParsing="false" text="취 소" />
+      <TextArea layoutX="79.0" layoutY="194.0" prefHeight="165.0" prefWidth="319.0" text="자료입력공간" />
+      <MenuButton layoutX="426.0" layoutY="194.0" mnemonicParsing="false" text="MenuButton">
+        <items>
+          <MenuItem text="1구간 지역" />
+          <MenuItem text="2구간 지역" />
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

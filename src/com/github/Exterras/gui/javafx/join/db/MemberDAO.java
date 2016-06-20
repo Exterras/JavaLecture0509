@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import memberT01.DbClose;
-import memberT01.DbSet;
-
 public class MemberDAO {
 
 	private String vId;

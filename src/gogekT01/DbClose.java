@@ -1,4 +1,4 @@
-package com.github.Exterras.gui.javafx.join.db;
+package gogekT01;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,10 +17,6 @@ public class DbClose {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public void close(Connection conn, Statement stmt){
-		close(stmt,conn);
 	}
 	
 	public void close(PreparedStatement pstmt, Connection conn){
