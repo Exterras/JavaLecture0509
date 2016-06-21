@@ -1,4 +1,4 @@
-package com.github.Exterras.test;
+package group3;
 
 public class PyramidTest {
 	public static void main(String[] args) {

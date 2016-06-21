@@ -1,4 +1,4 @@
-package com.github.Exterras.test;
+package group3;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
